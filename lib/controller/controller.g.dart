@@ -163,6 +163,17 @@ mixin _$Controller on ControllerBase, Store {
   }
 
   @override
+  dynamic av2Null() {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.av2Null');
+    try {
+      return super.av2Null();
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 av1: ${av1},

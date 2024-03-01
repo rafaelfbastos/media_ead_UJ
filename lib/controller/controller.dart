@@ -35,12 +35,41 @@ abstract class ControllerBase with Store {
     _ava1 = ava1;
 
     if (_ava2 == null && _av2 == null) {
-    } else if (_ava2 != null && _av2 == null) {}
+      final x = (7 - ava1 * 0.2) / (0.8);
+      _ava2F = x;
+      _av2F = x;
+    } else if (_ava2 != null && _av2 == null) {
+      final x = (7 - av1 * 0.4) / 0.6;
+      _av2F = x;
+    }
   }
 
   @action
-  setAva2(double ava2) => _ava2 = ava2;
+  setAva2(double ava2) {
+    _ava2 = ava2;
+    if (_ava1 == null && _av2 == null) {
+      final x = (7 - ava2 * 0.2) / (0.8);
+      _ava1F = x;
+      _av2F = x;
+    } else if (_ava1 != null && _av2 == null) {
+      final x = (7 - av1 * 0.4) / 0.6;
+      _ava1F = x;
+    }
+  }
 
   @action
-  setAv2(double av2) => _av2 = av2;
+  setAv2(double av2) {
+    _av2 = av2;
+    if (_ava1 == null && _ava2 == null) {
+      final x = (7 - av2 * 0.6) / 0.4;
+      _ava1F = x;
+      _ava2F = x;
+    } else if (_ava1 != null && _av2 == null) {
+      final x = (7 - av1 * 0.4) / 0.6;
+      _ava1F = x;
+    }
+  }
+
+  @action
+  av2Null() => _av2 = null;
 }

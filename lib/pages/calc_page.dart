@@ -36,9 +36,13 @@ class _CalcPageState extends State<CalcPage> {
             }),
           ),
           NotaField(
-           hintText: widget._controller.ava2F.toStringAsFixed(2),
+            hintText: widget._controller.ava2F.toStringAsFixed(2),
             onChanged: (value) => _deboucer.run(() {
               final ava2 = double.tryParse(value);
+
+              if (value.isEmpty) {
+                widget._controller.av2Null();
+              }
               if (ava2 != null) {
                 widget._controller.setAva2(ava2);
               } else {
@@ -47,7 +51,7 @@ class _CalcPageState extends State<CalcPage> {
             }),
           ),
           NotaField(
-           hintText: widget._controller.av2F.toStringAsFixed(2),
+            hintText: widget._controller.av2F.toStringAsFixed(2),
             onChanged: (value) => _deboucer.run(() {
               final av2 = double.tryParse(value);
               if (av2 != null) {
