@@ -28,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Container(
       color: MyColors.bage,
-      child: Hero(tag: 'logo', child: Image.asset("logo.png")),
+      child: Hero(tag: 'logo', child: Image.asset("assets/logo.png")),
     );
   }
 }

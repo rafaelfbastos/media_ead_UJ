@@ -33,6 +33,8 @@ abstract class ControllerBase with Store {
   @computed
   bool get showMedia => (_ava1!=null && _ava2!=null && _av2 !=null);
 
+
+
   @action
   setAva1(double ava1) {
     _ava1 = ava1;
