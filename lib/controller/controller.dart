@@ -16,13 +16,13 @@ abstract class ControllerBase with Store {
   double? _av2;
 
   @readonly
-  double _ava1F = 7.0;
+  double _ava1F = 6.0;
 
   @readonly
-  double _ava2F = 7.0;
+  double _ava2F = 6.0;
 
   @readonly
-  double _av2F = 7.0;
+  double _av2F = 6.0;
 
   @computed
   double get av1 => ((_ava1 ?? 0.0) + (_ava2 ?? 0.0)) / 2;
@@ -30,17 +30,23 @@ abstract class ControllerBase with Store {
   @computed
   double get media => av1 * 0.4 + (_av2 ?? 0.0) * 0.6;
 
+  @computed
+  bool get showMedia => (_ava1!=null && _ava2!=null && _av2 !=null);
+
   @action
   setAva1(double ava1) {
     _ava1 = ava1;
 
     if (_ava2 == null && _av2 == null) {
-      final x = (7 - ava1 * 0.2) / (0.8);
+      final x = (6 - ava1 * 0.2) / (0.8);
       _ava2F = x;
       _av2F = x;
     } else if (_ava2 != null && _av2 == null) {
-      final x = (7 - av1 * 0.4) / 0.6;
+      final x = (6 - av1 * 0.4) / 0.6;
       _av2F = x;
+    } else if (_ava2 == null && _av2 != null) {
+      final x = (6 - 0.6 * _av2! - 0.2 * ava1) / 0.2;
+      _ava2F = x;
     }
   }
 
@@ -48,11 +54,14 @@ abstract class ControllerBase with Store {
   setAva2(double ava2) {
     _ava2 = ava2;
     if (_ava1 == null && _av2 == null) {
-      final x = (7 - ava2 * 0.2) / (0.8);
+      final x = (6 - ava2 * 0.2) / (0.8);
       _ava1F = x;
       _av2F = x;
     } else if (_ava1 != null && _av2 == null) {
-      final x = (7 - av1 * 0.4) / 0.6;
+      final x = (6 - av1 * 0.4) / 0.6;
+      _av2F = x;
+    } else if (_ava1 == null && _av2 != null) {
+      final x = (6 - 0.6 * _av2! - 0.2 * ava2) / 0.2;
       _ava1F = x;
     }
   }
@@ -61,15 +70,78 @@ abstract class ControllerBase with Store {
   setAv2(double av2) {
     _av2 = av2;
     if (_ava1 == null && _ava2 == null) {
-      final x = (7 - av2 * 0.6) / 0.4;
+      final x = (6 - av2 * 0.6) / 0.4;
       _ava1F = x;
       _ava2F = x;
-    } else if (_ava1 != null && _av2 == null) {
-      final x = (7 - av1 * 0.4) / 0.6;
+    } else if (_ava1 != null && _ava2 == null) {
+      final x = (6 - _ava1! * 0.2-av2*0.6) / 0.2;
+      _ava2F = x;
+    } else if (_ava1 == null && _ava2 != null) {
+      final x = (6 - _ava2! * 0.2-av2*0.6) / 0.2;
       _ava1F = x;
     }
   }
 
   @action
-  av2Null() => _av2 = null;
+  setAv2Null() {
+    _av2 = null;
+    if (_ava1 == null && _ava2 == null) {
+      _av2F = 6;
+      _ava1F = 6;
+      _ava2F = 6;
+    } else if (_ava1 != null && _ava2 == null) {
+      final x = (6 - _ava1! * 0.2) / 0.8;
+      _ava2F = x;
+      _av2F = x;
+    } else if (_ava1 == null && _ava2 != null) {
+      final x = (6 - _ava2! * 0.2) / 0.8;
+      _ava1F = x;
+      _av2F = x;
+    }else{
+      final x = (6 - av1 * 0.4) / 0.6;
+      _av2F = x;
+    }
+
+  }
+
+  @action
+  setAva1Null() {
+    _ava1 = null;
+    if (_ava2 == null && _av2 == null) {
+      _av2F = 6;
+      _ava1F = 6;
+      _ava2F = 6;
+    } else if (_ava2 != null && _av2 == null) {
+      final x = (6 - _ava1! * 0.2) / 0.8;
+      _av2F = x;
+      _ava1F = x;
+    }else if(_ava2 == null && _av2 != null){
+      final x = (6 - _av2! * 0.6) / 0.4;
+      _ava1F = x;
+      _ava2F = x;
+    }else{
+      final x = (6 - _ava2! * 0.2-_av2!*0.6) / 0.2;
+      _ava1F = x;
+    }
+  }
+  @action
+  setAva2Null() {
+    _ava2 = null;
+    if (_ava1 == null && _av2 == null) {
+      _av2F = 6;
+      _ava1F = 6;
+      _ava2F = 6;
+    } else if (_ava1 != null && _av2 == null) {
+      final x = (6 - _ava1! * 0.2) / 0.8;
+      _av2F = x;
+      _ava2F = x;
+    }else if(_ava1 == null && _av2 != null){
+      final x = (6 - _av2! * 0.6) / 0.4;
+      _ava1F = x;
+      _ava2F = x;
+    }else{
+      final x = (6 - _ava1! * 0.2-_av2!*0.6) / 0.2;
+      _ava2F = x;
+    }
+  }
 }

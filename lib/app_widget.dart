@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:media_ead/helpers/ui/ui_config.dart';
 import 'package:media_ead/pages/calc_page.dart';
+import 'package:media_ead/pages/splash_page.dart';
 import 'package:provider/provider.dart';
 
 class AppWidget extends StatelessWidget {
@@ -13,9 +14,11 @@ class AppWidget extends StatelessWidget {
       theme: UiConfig.theme,
       title: "Média EAD",
       routes: {
-        '/':(context) =>  CalcPage(controller: context.read(),),
+        '/':(context) =>  const SplashPage(),
+        '/calculadora':(context) =>  CalcPage(controller: context.read(),),
       },
     );
+    
        
   }
 }
