@@ -32,7 +32,7 @@ class _CalcPageState extends State<CalcPage> {
               child: Hero(
                 tag: 'logo',
                 child: Image.asset(
-                  'logo.webp',
+                  'logo.png',
                   fit: BoxFit.fill,
                 ),
               ),
