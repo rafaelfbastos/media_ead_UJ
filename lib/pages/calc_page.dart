@@ -104,12 +104,13 @@ class _CalcPageState extends State<CalcPage> {
                                   ),
                                   Text(
                                     'Para calcular a média ponderada entre a AV1 e a AV2, onde a AV1 tem peso 4 e a AV2 tem peso 6, você pode seguir os seguintes passos:',
+                                    textAlign: TextAlign.center,
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     '''
-                          
+                    
                           \u2022 Multiplique a nota da AV1 pelo seu peso (4).
                           
                           \u2022 Multiplique a nota da AV2 pelo seu peso (6).
@@ -118,6 +119,7 @@ class _CalcPageState extends State<CalcPage> {
                           
                           \u2022 Divida a soma pelo total dos pesos (4 + 6 = 10).
                           ''',
+                                    textAlign: TextAlign.center,
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold),
                                   ),
