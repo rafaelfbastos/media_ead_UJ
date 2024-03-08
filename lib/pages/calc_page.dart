@@ -4,10 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:media_ead/controller/controller.dart';
 import 'package:media_ead/helpers/debouncer.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:media_ead/helpers/ui/logo.dart';
 import 'package:media_ead/helpers/ui/my_colors.dart';
 import 'package:media_ead/widgets/custom_footer.dart';
 import 'package:media_ead/widgets/nota_field.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class CalcPage extends StatefulWidget {
   final Controller _controller;
@@ -149,36 +149,17 @@ class _CalcPageState extends State<CalcPage> {
       backgroundColor: MyColors.primary,
       appBar: AppBar(
         backgroundColor: MyColors.bage,
-        title: InkWell(
-          onTap: () => launchUrl(unijorge),
-          child: Row(
-            children: [
-              SizedBox(
-                height: 50,
-                child: Hero(
-                  tag: 'logo',
-                  child: Image.asset(
-                    'assets/logo.png',
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Text(
-                "UNIJORGE",
-                style: GoogleFonts.bebasNeue(
-                    color: MyColors.primary,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24),
-              )
-            ],
-          ),
-        ),
+        title: Logo(url: unijorge),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info),color: MyColors.vinho,
+            onPressed: () {},
+          )
+        ],
       ),
       body: Observer(
-        builder: (context) => Center(
+        builder: (context) => SizedBox(
+          height: MediaQuery.of(context).size.height,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Expanded(
               flex: 2,
