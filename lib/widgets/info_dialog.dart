@@ -23,7 +23,7 @@ class InfoDialog extends StatelessWidget {
       children: [
         const Divider(),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: Text(
             'Aplicativo desenvolvido para auxiliar os estudantes a calcular as notas das disciplinas EAD.',
             style:
@@ -35,7 +35,7 @@ class InfoDialog extends StatelessWidget {
           height: 10,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: Text(
             'Utilização:',
             style:
@@ -44,7 +44,7 @@ class InfoDialog extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: Text(
             '\u2714 Digite as notas AVA1, AVA2 e AV3 nos respectivos campos, e a média será calculada.',
             style:
@@ -53,7 +53,7 @@ class InfoDialog extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: Text(
             '\u2714 À medida que as notas forem preenchidas, o aplicativo calcula o quanto será necessário tirar nas outras avaliações para passar.',
             style:
@@ -62,7 +62,7 @@ class InfoDialog extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: Text(
             '\u2714 Ao digitar todas as notas, a média aparece. Caso queira ver como o cálculo foi feito, basta clicar na média.',
             style:

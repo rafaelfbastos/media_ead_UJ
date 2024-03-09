@@ -42,18 +42,21 @@ class _CalcPageState extends State<CalcPage> {
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                'Cálculo da média:',
-                                style: GoogleFonts.roboto(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                              IconButton(
-                                  onPressed: () => Navigator.of(context).pop(),
-                                  icon: const Icon(Icons.close))
-                            ],
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Cálculo da média:',
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 20, fontWeight: FontWeight.bold),
+                                ),
+                                IconButton(
+                                    onPressed: () => Navigator.of(context).pop(),
+                                    icon: const Icon(Icons.close))
+                              ],
+                            ),
                           ),
                           const Divider(),
                           SingleChildScrollView(
@@ -109,9 +112,12 @@ class _CalcPageState extends State<CalcPage> {
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold),
                                   ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.symmetric(vertical: 5),
+                                        const EdgeInsets.symmetric(vertical: 8),
                                     child: Text(
                                       '\u2022 Multiplique a nota da AV1 pelo seu peso (4).',
                                       textAlign: TextAlign.center,
@@ -121,7 +127,7 @@ class _CalcPageState extends State<CalcPage> {
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.symmetric(vertical: 5),
+                                        const EdgeInsets.symmetric(vertical: 8),
                                     child: Text(
                                       '\u2022 Multiplique a nota da AV2 pelo seu peso (6).',
                                       textAlign: TextAlign.center,
@@ -131,7 +137,7 @@ class _CalcPageState extends State<CalcPage> {
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.symmetric(vertical: 5),
+                                        const EdgeInsets.symmetric(vertical: 8),
                                     child: Text(
                                       '\u2022 Some os resultados obtidos nos passos 1 e 2.',
                                       textAlign: TextAlign.center,
@@ -141,7 +147,7 @@ class _CalcPageState extends State<CalcPage> {
                                   ),
                                   Padding(
                                     padding:
-                                        const EdgeInsets.symmetric(vertical: 5),
+                                        const EdgeInsets.symmetric(vertical: 8),
                                     child: Text(
                                       ' \u2022 Divida a soma pelo total dos pesos (4 + 6 = 10).',
                                       textAlign: TextAlign.center,
