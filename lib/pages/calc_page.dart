@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:media_ead/controller/controller.dart';
 import 'package:media_ead/helpers/debouncer.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:media_ead/helpers/ui/logo.dart';
 import 'package:media_ead/helpers/ui/my_colors.dart';
 import 'package:media_ead/widgets/custom_footer.dart';
+import 'package:media_ead/widgets/info_dialog.dart';
+import 'package:media_ead/widgets/logo.dart';
 import 'package:media_ead/widgets/nota_field.dart';
 
 class CalcPage extends StatefulWidget {
@@ -152,8 +153,12 @@ class _CalcPageState extends State<CalcPage> {
         title: Logo(url: unijorge),
         actions: [
           IconButton(
-            icon: const Icon(Icons.info),color: MyColors.vinho,
-            onPressed: () {},
+            icon: const Icon(Icons.info),
+            color: MyColors.vinho,
+            onPressed: () => showDialog(
+              context: context,
+              builder: (context) => const InfoDialog(),
+            ),
           )
         ],
       ),
