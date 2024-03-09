@@ -109,20 +109,45 @@ class _CalcPageState extends State<CalcPage> {
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text(
-                                    '''
-                    
-                          \u2022 Multiplique a nota da AV1 pelo seu peso (4).
-                          
-                          \u2022 Multiplique a nota da AV2 pelo seu peso (6).
-                          
-                          \u2022 Some os resultados obtidos nos passos 1 e 2.
-                          
-                          \u2022 Divida a soma pelo total dos pesos (4 + 6 = 10).
-                          ''',
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.bold),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      '\u2022 Multiplique a nota da AV1 pelo seu peso (4).',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      '\u2022 Multiplique a nota da AV2 pelo seu peso (6).',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      '\u2022 Some os resultados obtidos nos passos 1 e 2.',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 5),
+                                    child: Text(
+                                      ' \u2022 Divida a soma pelo total dos pesos (4 + 6 = 10).',
+                                      textAlign: TextAlign.center,
+                                      style: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                   const SizedBox(
                                     height: 15,
