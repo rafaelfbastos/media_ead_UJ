@@ -46,7 +46,7 @@ class InfoDialog extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
           child: Text(
-            '\u2714 Digite as notas AVA1, AVA2 e AV3 nos respectivos campos, e a média será calculada.',
+            '\u2714 Digite as notas AVA1, AVA2 e A2 nos respectivos campos, e a média será calculada.',
             style:
                 GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 15),
             textAlign: TextAlign.center,

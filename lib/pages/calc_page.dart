@@ -84,7 +84,7 @@ class _CalcPageState extends State<CalcPage> {
                                           'Ava2 = ${ava2?.toStringAsFixed(2)}',
                                           mathStyle: MathStyle.text),
                                       Math.tex(
-                                          'Av2 = ${av2.toStringAsFixed(2)}',
+                                          'A2 = ${av2.toStringAsFixed(2)}',
                                           mathStyle: MathStyle.text),
                                     ],
                                   ),
@@ -92,7 +92,7 @@ class _CalcPageState extends State<CalcPage> {
                                     height: 20,
                                   ),
                                   Text(
-                                    'A nota da AV1 é obtida através da média aritmética entre a (AVA1) e a (AVA2).',
+                                    'A nota da A1 é obtida através da média aritmética entre a (AVA1) e a (AVA2).',
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold),
                                     textAlign: TextAlign.center,
@@ -101,13 +101,13 @@ class _CalcPageState extends State<CalcPage> {
                                     height: 20,
                                   ),
                                   Math.tex(
-                                      'Av1 = \\frac{ $ava1 + $ava2}{2} = $av1',
+                                      'A1 = \\frac{ $ava1 + $ava2}{2} = $av1',
                                       mathStyle: MathStyle.display),
                                   const SizedBox(
                                     height: 20,
                                   ),
                                   Text(
-                                    'Para calcular a média ponderada entre a AV1 e a AV2, onde a AV1 tem peso 4 e a AV2 tem peso 6, você pode seguir os seguintes passos:',
+                                    'Para calcular a média ponderada entre a A1 e a A2, onde a A1 tem peso 4 e a A2 tem peso 6, você pode seguir os seguintes passos:',
                                     textAlign: TextAlign.center,
                                     style: GoogleFonts.roboto(
                                         fontWeight: FontWeight.bold),
@@ -119,7 +119,7 @@ class _CalcPageState extends State<CalcPage> {
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 8),
                                     child: Text(
-                                      '\u2022 Multiplique a nota da AV1 pelo seu peso (4).',
+                                      '\u2022 Multiplique a nota da A1 pelo seu peso (4).',
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.roboto(
                                           fontWeight: FontWeight.bold),
@@ -129,7 +129,7 @@ class _CalcPageState extends State<CalcPage> {
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 8),
                                     child: Text(
-                                      '\u2022 Multiplique a nota da AV2 pelo seu peso (6).',
+                                      '\u2022 Multiplique a nota da A2 pelo seu peso (6).',
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.roboto(
                                           fontWeight: FontWeight.bold),
@@ -246,7 +246,7 @@ class _CalcPageState extends State<CalcPage> {
                       }),
                     ),
                     NotaField(
-                      label: 'AV2:',
+                      label: 'A2:',
                       hintText:
                           "Nota mínima requerida ${widget._controller.av2F.toStringAsFixed(2)}",
                       onChanged: (value) => deboucer.run(() {
@@ -259,6 +259,20 @@ class _CalcPageState extends State<CalcPage> {
                         }
                       }),
                     ),
+                    (widget._controller.showAv3)?NotaField(
+                      label: 'A3:',
+                      hintText:
+                          "Nota mínima requerida ${widget._controller.av2F.toStringAsFixed(2)}",
+                      onChanged: (value) => deboucer.run(() {
+                        final av3 = double.tryParse(value);
+                        if (value.isEmpty) {
+                          widget._controller.setAv3(null);
+                        }
+                        if (av3 != null) {
+                          widget._controller.setAv3(av3);
+                        }
+                      }),
+                    ):const SizedBox(),
                   ],
                 ),
               ),
@@ -270,22 +284,43 @@ class _CalcPageState extends State<CalcPage> {
                 child: Tooltip(
                   verticalOffset: -1,
                   message: 'Entenda o cálculo',
-                  child: Text(
-                    (widget._controller.showMedia)
-                        ? "Média: ${widget._controller.media.toStringAsFixed(2)}"
-                        : "",
-                    style: GoogleFonts.bebasNeue(
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold,
-                        color: (widget._controller.media < 6)
-                            ? MyColors.vermelho
-                            : MyColors.azulado,
-                        shadows: [
-                          const Shadow(
-                              color: Colors.black45,
-                              offset: Offset(1, 2),
-                              blurRadius: 1)
-                        ]),
+                  child: Column(
+                    children: [
+                      Text(
+                        (widget._controller.showMedia)
+                            ? "Média: ${widget._controller.media.toStringAsFixed(2)}"
+                            : "",
+                        style: GoogleFonts.bebasNeue(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                            color: (widget._controller.media < 6)
+                                ? MyColors.vermelho
+                                : MyColors.azulado,
+                            shadows: [
+                              const Shadow(
+                                  color: Colors.black45,
+                                  offset: Offset(1, 2),
+                                  blurRadius: 1)
+                            ]),
+                      ),
+                       Text(
+                        (widget._controller.showMedia)
+                            ? (widget._controller.media<6)?'Reprovado':'Aprovado'
+                            : "",
+                        style: GoogleFonts.bebasNeue(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
+                            color: (widget._controller.media < 6)
+                                ? MyColors.vermelho
+                                : MyColors.azulado,
+                            shadows: [
+                              const Shadow(
+                                  color: Colors.black45,
+                                  offset: Offset(1, 2),
+                                  blurRadius: 1)
+                            ]),
+                      ),
+                    ],
                   ),
                 ),
               ),

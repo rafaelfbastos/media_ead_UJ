@@ -14,6 +14,9 @@ abstract class ControllerBase with Store {
 
   @readonly
   double? _av2;
+  
+  @readonly
+  double? _av3;
 
   @readonly
   double _ava1F = 6.0;
@@ -28,11 +31,24 @@ abstract class ControllerBase with Store {
   double get av1 => ((_ava1 ?? 0.0) + (_ava2 ?? 0.0)) / 2;
 
   @computed
-  double get media => av1 * 0.4 + (_av2 ?? 0.0) * 0.6;
+  double get media {
+    if(_av3!=null){
+      return av1 * 0.4 + (_av3 ?? 0.0) * 0.6;
+    }
+    return av1 * 0.4 + (_av2 ?? 0.0) * 0.6;
+  } 
 
   @computed
   bool get showMedia => (_ava1!=null && _ava2!=null && _av2 !=null);
 
+  @computed 
+  bool get showAv3 {
+
+   final media = av1 * 0.4 + (_av2 ?? 0.0) * 0.6;
+
+   return(media<6 && _ava1!=null && _ava2!=null && _av2 !=null);
+
+  }
 
 
   @action
@@ -87,6 +103,7 @@ abstract class ControllerBase with Store {
   @action
   setAv2Null() {
     _av2 = null;
+    _av3 = null;
     if (_ava1 == null && _ava2 == null) {
       _av2F = 6;
       _ava1F = 6;
@@ -109,6 +126,7 @@ abstract class ControllerBase with Store {
   @action
   setAva1Null() {
     _ava1 = null;
+    _av3 = null;
     if (_ava2 == null && _av2 == null) {
       _av2F = 6;
       _ava1F = 6;
@@ -129,6 +147,7 @@ abstract class ControllerBase with Store {
   @action
   setAva2Null() {
     _ava2 = null;
+    _av3 = null;
     if (_ava1 == null && _av2 == null) {
       _av2F = 6;
       _ava1F = 6;
@@ -145,5 +164,10 @@ abstract class ControllerBase with Store {
       final x = (6 - _ava1! * 0.2-_av2!*0.6) / 0.2;
       _ava2F = x;
     }
+  }
+
+  @action
+  setAv3(double? av3){
+    _av3 = av3;
   }
 }

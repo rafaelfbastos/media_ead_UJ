@@ -21,6 +21,19 @@ mixin _$Controller on ControllerBase, Store {
   double get media => (_$mediaComputed ??=
           Computed<double>(() => super.media, name: 'ControllerBase.media'))
       .value;
+  Computed<bool>? _$showMediaComputed;
+
+  @override
+  bool get showMedia =>
+      (_$showMediaComputed ??= Computed<bool>(() => super.showMedia,
+              name: 'ControllerBase.showMedia'))
+          .value;
+  Computed<bool>? _$showAv3Computed;
+
+  @override
+  bool get showAv3 => (_$showAv3Computed ??=
+          Computed<bool>(() => super.showAv3, name: 'ControllerBase.showAv3'))
+      .value;
 
   late final _$_ava1Atom = Atom(name: 'ControllerBase._ava1', context: context);
 
@@ -70,6 +83,23 @@ mixin _$Controller on ControllerBase, Store {
   set _av2(double? value) {
     _$_av2Atom.reportWrite(value, super._av2, () {
       super._av2 = value;
+    });
+  }
+
+  late final _$_av3Atom = Atom(name: 'ControllerBase._av3', context: context);
+
+  double? get av3 {
+    _$_av3Atom.reportRead();
+    return super._av3;
+  }
+
+  @override
+  double? get _av3 => av3;
+
+  @override
+  set _av3(double? value) {
+    _$_av3Atom.reportWrite(value, super._av3, () {
+      super._av3 = value;
     });
   }
 
@@ -163,10 +193,56 @@ mixin _$Controller on ControllerBase, Store {
   }
 
   @override
+  dynamic setAv2Null() {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.setAv2Null');
+    try {
+      return super.setAv2Null();
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setAva1Null() {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.setAva1Null');
+    try {
+      return super.setAva1Null();
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setAva2Null() {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.setAva2Null');
+    try {
+      return super.setAva2Null();
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setAv3(double? av3) {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.setAv3');
+    try {
+      return super.setAv3(av3);
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 av1: ${av1},
-media: ${media}
+media: ${media},
+showMedia: ${showMedia},
+showAv3: ${showAv3}
     ''';
   }
 }
