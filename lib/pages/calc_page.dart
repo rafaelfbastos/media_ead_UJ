@@ -84,6 +84,7 @@ class _CalcPageState extends State<CalcPage> {
                 child: AutoSizeText(
                   'Calculadora de média das matérias EAD',
                   textAlign: TextAlign.center,
+                  maxLines: 1,
                   style: GoogleFonts.robotoMono(
                       color: MyColors.bage,
                       fontSize: 20,

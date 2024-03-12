@@ -8927,11 +8927,12 @@ IV:function IV(){},
 nl:function nl(){},
 NM:function NM(){},
 SA:function SA(){},
-yc:function yc(a,b,c,d){var _=this
+yc:function yc(a,b,c,d,e){var _=this
 _.d=a
 _.f=b
 _.as=c
-_.a=d},
+_.db=d
+_.a=e},
 SC:function SC(a){this.a=null
 this.b=a
 this.c=null},
@@ -47558,8 +47559,7 @@ s=this.a
 r=s.a.f
 if(r.a)r=m.w.bD(r)
 if(r.r==null)r=r.SS(14)
-s.a.toString
-q=m.Q
+q=s.a.db
 p=s.a3P(b,r,q)
 o=A.k7(p[0])
 A.n5(p[1])
@@ -85285,7 +85285,7 @@ A.al8.prototype={
 $1(a){return B.akP},
 $S:512}
 A.ala.prototype={
-$1(a){var s,r,q,p,o=null,n="Nota m\xednima requerida ",m=A.bT(a,o,t.w).w,l=A.auU(new A.bm(B.aiE,new A.yc("Calculadora de m\xe9dia das mat\xe9rias EAD",A.aXq().$3$color$fontSize$fontWeight(B.ez,20,B.I),B.al,o),o),1),k=this.a,j=k.a.c,i=j.gLg()
+$1(a){var s,r,q,p,o=null,n="Nota m\xednima requerida ",m=A.bT(a,o,t.w).w,l=A.auU(new A.bm(B.aiE,new A.yc("Calculadora de m\xe9dia das mat\xe9rias EAD",A.aXq().$3$color$fontSize$fontWeight(B.ez,20,B.I),B.al,1,o),o),1),k=this.a,j=k.a.c,i=j.gLg()
 i.a.aB(i)
 j=B.c.a4(j.e,2)
 i=this.b
