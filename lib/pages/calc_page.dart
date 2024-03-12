@@ -1,5 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:media_ead/controller/controller.dart';
 import 'package:media_ead/helpers/debouncer.dart';
@@ -8,7 +8,11 @@ import 'package:media_ead/helpers/ui/my_colors.dart';
 import 'package:media_ead/widgets/custom_footer.dart';
 import 'package:media_ead/widgets/info_dialog.dart';
 import 'package:media_ead/widgets/logo.dart';
+import 'package:media_ead/widgets/media_dialog.dart';
+import 'package:media_ead/widgets/media_dialog_a3.dart';
 import 'package:media_ead/widgets/nota_field.dart';
+import 'package:media_ead/widgets/reprovado_dialog.dart';
+import 'package:mobx/mobx.dart';
 
 class CalcPage extends StatefulWidget {
   final Controller _controller;
@@ -20,162 +24,30 @@ class CalcPage extends StatefulWidget {
 }
 
 class _CalcPageState extends State<CalcPage> {
+  final toDispose = <ReactionDisposer>[];
+
+  @override
+  void initState() {
+    final reprovadoReaction =
+        reaction((_) => widget._controller.reprovado, (reprovado) {
+      showDialog(
+          context: context, builder: (context) => const ReprovadoDialog());
+    });
+
+    toDispose.add(reprovadoReaction);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    toDispose.map((dispose) => dispose());
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final deboucer = Debouncer(milliseconds: 300);
     final Uri unijorge = Uri.parse('https://www.unijorge.edu.br/');
-
-    popUp() {
-      final ava1 = widget._controller.ava1;
-      final ava2 = widget._controller.ava2;
-      final av2 = widget._controller.av2;
-      final av1 = widget._controller.av1;
-      final media = widget._controller.media;
-      final av1Peso = av1 * 4;
-      final av2Peso = av2! * 6;
-
-      showDialog(
-          context: context,
-          builder: ((context) => Dialog(
-                child: IntrinsicWidth(
-                  child: IntrinsicHeight(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Cálculo da média:',
-                                  style: GoogleFonts.roboto(
-                                      fontSize: 20, fontWeight: FontWeight.bold),
-                                ),
-                                IconButton(
-                                    onPressed: () => Navigator.of(context).pop(),
-                                    icon: const Icon(Icons.close))
-                              ],
-                            ),
-                          ),
-                          const Divider(),
-                          SingleChildScrollView(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 15, left: 25, right: 25, bottom: 25),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Notas:',
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Math.tex(
-                                          'Ava1 = ${ava1?.toStringAsFixed(2)}',
-                                          mathStyle: MathStyle.text),
-                                      Math.tex(
-                                          'Ava2 = ${ava2?.toStringAsFixed(2)}',
-                                          mathStyle: MathStyle.text),
-                                      Math.tex(
-                                          'A2 = ${av2.toStringAsFixed(2)}',
-                                          mathStyle: MathStyle.text),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    'A nota da A1 é obtida através da média aritmética entre a (AVA1) e a (AVA2).',
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Math.tex(
-                                      'A1 = \\frac{ $ava1 + $ava2}{2} = $av1',
-                                      mathStyle: MathStyle.display),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    'Para calcular a média ponderada entre a A1 e a A2, onde a A1 tem peso 4 e a A2 tem peso 6, você pode seguir os seguintes passos:',
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.roboto(
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: Text(
-                                      '\u2022 Multiplique a nota da A1 pelo seu peso (4).',
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.roboto(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: Text(
-                                      '\u2022 Multiplique a nota da A2 pelo seu peso (6).',
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.roboto(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: Text(
-                                      '\u2022 Some os resultados obtidos nos passos 1 e 2.',
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.roboto(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
-                                    child: Text(
-                                      ' \u2022 Divida a soma pelo total dos pesos (4 + 6 = 10).',
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.roboto(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
-                                  Math.tex(
-                                      'M= \\frac{ $av1 \\cdot 4 + $av2 \\cdot 6 }{10}',
-                                      mathStyle: MathStyle.display),
-                                  const SizedBox(
-                                    height: 25,
-                                  ),
-                                  Math.tex(
-                                      'M = \\frac{ $av1Peso + $av2Peso }{10} = ${media.toStringAsFixed(2)}',
-                                      mathStyle: MathStyle.display),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ]),
-                  ),
-                ),
-              )));
-    }
 
     return Scaffold(
       backgroundColor: MyColors.primary,
@@ -198,10 +70,10 @@ class _CalcPageState extends State<CalcPage> {
           height: MediaQuery.of(context).size.height,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Expanded(
-              flex: 2,
+              flex: 1,
               child: Padding(
                 padding: const EdgeInsets.only(top: 40),
-                child: Text(
+                child: AutoSizeText(
                   'Calculadora de média das matérias EAD',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.robotoMono(
@@ -212,7 +84,7 @@ class _CalcPageState extends State<CalcPage> {
               ),
             ),
             Expanded(
-              flex: 4,
+              flex: 5,
               child: SizedBox(
                 width: 300,
                 child: Column(
@@ -259,20 +131,22 @@ class _CalcPageState extends State<CalcPage> {
                         }
                       }),
                     ),
-                    (widget._controller.showAv3)?NotaField(
-                      label: 'A3:',
-                      hintText:
-                          "Nota mínima requerida ${widget._controller.av2F.toStringAsFixed(2)}",
-                      onChanged: (value) => deboucer.run(() {
-                        final av3 = double.tryParse(value);
-                        if (value.isEmpty) {
-                          widget._controller.setAv3(null);
-                        }
-                        if (av3 != null) {
-                          widget._controller.setAv3(av3);
-                        }
-                      }),
-                    ):const SizedBox(),
+                    (widget._controller.showAv3)
+                        ? NotaField(
+                            label: 'A3:',
+                            hintText:
+                                "Nota mínima requerida ${widget._controller.av2F.toStringAsFixed(2)}",
+                            onChanged: (value) => deboucer.run(() {
+                              final av3 = double.tryParse(value);
+                              if (value.isEmpty) {
+                                widget._controller.setAv3(null);
+                              }
+                              if (av3 != null) {
+                                widget._controller.setAv3(av3);
+                              }
+                            }),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               ),
@@ -280,7 +154,11 @@ class _CalcPageState extends State<CalcPage> {
             Expanded(
               flex: 1,
               child: InkWell(
-                onTap: () => popUp(),
+                onTap: () => showDialog(
+                    context: context,
+                    builder: (context) => (widget._controller.av3 != null)
+                        ? MediaDialogA3(controller: widget._controller)
+                        : MediaDialog(controller: widget._controller)),
                 child: Tooltip(
                   verticalOffset: -1,
                   message: 'Entenda o cálculo',
@@ -303,9 +181,11 @@ class _CalcPageState extends State<CalcPage> {
                                   blurRadius: 1)
                             ]),
                       ),
-                       Text(
+                      Text(
                         (widget._controller.showMedia)
-                            ? (widget._controller.media<6)?'Reprovado':'Aprovado'
+                            ? (widget._controller.media < 6)
+                                ? 'Reprovado'
+                                : 'Aprovado'
                             : "",
                         style: GoogleFonts.bebasNeue(
                             fontSize: 23,
