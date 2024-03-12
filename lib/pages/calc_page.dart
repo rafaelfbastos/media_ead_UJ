@@ -25,13 +25,19 @@ class CalcPage extends StatefulWidget {
 
 class _CalcPageState extends State<CalcPage> {
   final toDispose = <ReactionDisposer>[];
+  final ava1EC = TextEditingController();
+  final ava2EC = TextEditingController();
 
   @override
   void initState() {
     final reprovadoReaction =
         reaction((_) => widget._controller.reprovado, (reprovado) {
-      showDialog(
-          context: context, builder: (context) => const ReprovadoDialog());
+      showDialog(context: context, builder: (context) => const ReprovadoDialog())
+          .then((value) {
+            widget._controller.reset();
+            Navigator.of(context).pushReplacementNamed('/calculadora');
+          }
+              );
     });
 
     toDispose.add(reprovadoReaction);
@@ -41,6 +47,8 @@ class _CalcPageState extends State<CalcPage> {
   @override
   void dispose() {
     toDispose.map((dispose) => dispose());
+    ava1EC.dispose();
+    ava2EC.dispose();
     super.dispose();
   }
 
@@ -90,6 +98,7 @@ class _CalcPageState extends State<CalcPage> {
                 child: Column(
                   children: [
                     NotaField(
+                      controller: ava1EC,
                       label: 'AVA1:',
                       hintText:
                           "Nota mínima requerida ${widget._controller.ava1F.toStringAsFixed(2)}",
@@ -104,6 +113,7 @@ class _CalcPageState extends State<CalcPage> {
                       }),
                     ),
                     NotaField(
+                      controller: ava2EC,
                       label: 'AVA2:',
                       hintText:
                           "Nota mínima requerida ${widget._controller.ava2F.toStringAsFixed(2)}",

@@ -8,11 +8,13 @@ class NotaField extends StatelessWidget {
   final void Function(String)? onChanged;
   final String? label;
   final String hintText;
+  final TextEditingController? controller;
   const NotaField({
     Key? key,
     this.onChanged,
     required this.hintText,
     this.label,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -33,6 +35,7 @@ class NotaField extends StatelessWidget {
             ),
           ),
           TextField(
+              controller: controller,
               style: GoogleFonts.bebasNeue(color: MyColors.vinho),
               decoration: InputDecoration(
                 hintText: hintText,

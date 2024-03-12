@@ -15,6 +15,13 @@ mixin _$Controller on ControllerBase, Store {
   double get av1 => (_$av1Computed ??=
           Computed<double>(() => super.av1, name: 'ControllerBase.av1'))
       .value;
+  Computed<bool>? _$reprovadoComputed;
+
+  @override
+  bool get reprovado =>
+      (_$reprovadoComputed ??= Computed<bool>(() => super.reprovado,
+              name: 'ControllerBase.reprovado'))
+          .value;
   Computed<double>? _$mediaComputed;
 
   @override
@@ -237,9 +244,21 @@ mixin _$Controller on ControllerBase, Store {
   }
 
   @override
+  dynamic reset() {
+    final _$actionInfo = _$ControllerBaseActionController.startAction(
+        name: 'ControllerBase.reset');
+    try {
+      return super.reset();
+    } finally {
+      _$ControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 av1: ${av1},
+reprovado: ${reprovado},
 media: ${media},
 showMedia: ${showMedia},
 showAv3: ${showAv3}

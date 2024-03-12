@@ -31,9 +31,9 @@ abstract class ControllerBase with Store {
   double get av1 => ((_ava1 ?? 0.0) + (_ava2 ?? 0.0)) / 2;
 
   @computed
-  bool get reprovado => (_ava1 == 0 && _ava2 == 0);
-  
-  
+  bool get reprovado =>
+      (_ava1 == 0 && _ava1 != null && _ava2 == 0 && _ava2 != null);
+
   @computed
   double get media {
     if (_av3 != null) {
@@ -170,5 +170,16 @@ abstract class ControllerBase with Store {
   @action
   setAv3(double? av3) {
     _av3 = av3;
+  }
+
+  @action
+  reset() {
+    _ava1 = null;
+    _ava2 = null;
+    _av2 = null;
+    _av3 = null;
+    _ava1F = 6.0;
+    _ava2F = 6.0;
+    _av2F = 6.0;
   }
 }

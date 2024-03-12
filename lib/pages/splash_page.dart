@@ -19,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
       nav.pushReplacement(PageRouteBuilder(
           pageBuilder: (context, animation, secondAnimation) =>
               CalcPage(controller: context.read()),
-          settings: const RouteSettings(name: 'calculadora')));
+          settings: const RouteSettings(name: '/calculadora')));
     });
     super.initState();
   }
